@@ -1,0 +1,25 @@
+SubDir . ;
+
+SubDirC++Flags $(ALLLIBSC++FLAGS) ;
+
+if $(WINDOWS)
+{
+        SUFEXE = .exe ;
+}
+
+Main liveMusicMachine : src/Main.cpp ;
+
+MakeLocate liveMusicMachine : bin ;
+
+#LinkLibraries liveMusicMachine : libBase20 ;
+#
+#if $(WINDOWS)
+#{
+#        MakeLocate liveMusicMachine.exe : windowsBin ;
+#}
+#else
+#{
+#        MakeLocate liveMusicMachine : bin ;
+#}
+#
+#SubInclude . libs ;
