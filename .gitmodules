@@ -1,3 +1,6 @@
 [submodule "ThirdParty/rtmidi"]
 	path = ThirdParty/rtmidi
 	url = https://github.com/thestk/rtmidi
+[submodule "ThirdParty/base2.0"]
+	path = ThirdParty/base2.0
+	url = https://github.com/makuto/base2.0

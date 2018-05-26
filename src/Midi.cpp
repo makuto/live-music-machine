@@ -1,5 +1,7 @@
 #include "RtMidi.h"
 
+#include "Midi.hpp"
+
 #include <signal.h>
 #include <cstdlib>
 #include <iostream>
@@ -55,44 +57,6 @@ void RtMidiDemoListen()
 	}
 	return;
 }
-
-/* Midi Commands
- From http://www.songstuff.com/recording/article/midi_message_format/
-Note Off 	8n 	Note Number 	Velocity
-Note On 	9n 	Note Number 	Velocity
-Polyphonic Aftertouch 	An 	Note Number 	Pressure
-Control Change 	Bn 	Controller Number 	Data
-Program Change 	Cn 	Program Number 	Unused
-Channel Aftertouch 	Dn 	Pressure 	Unused
-Pitch Wheel 	En 	LSB 	MSB
-*/
-enum class MidiCommandType : unsigned char
-{
-	NoteOn = 8,
-	NoteOff = 9,
-	Aftertouch = 0xA,
-	ControlChange = 0xB,
-	ProgramChange = 0xC,
-	ChannelAftertouch = 0xD,
-	PitchWheel = 0xE,
-};
-
-struct MidiNoteOn;
-struct MidiCommand
-{
-	unsigned char channel : 4;
-	MidiCommandType command : 4;
-	void Print();
-};
-
-struct MidiNote
-{
-	unsigned char velocity : 8;
-	unsigned char note : 8;
-	MidiCommand status;
-
-	void Print();
-};
 
 void MidiNote::Print()
 {
@@ -171,7 +135,7 @@ void TestRtMidi()
 		// From demo
 		{
 			std::vector<unsigned char> message;
-			int nBytes, i;
+			int nBytes;
 			double stamp;
 			// Install an interrupt handler function.
 			done = false;

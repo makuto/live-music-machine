@@ -7,20 +7,19 @@ if $(WINDOWS)
         SUFEXE = .exe ;
 }
 
-Library libRtMidi : #ThirdParty/rtmidi/midiprobe.cpp
-                    ThirdParty/rtmidi/RtMidi.cpp ;
+Library libRtMidi : ThirdParty/rtmidi/RtMidi.cpp ;
 
 MakeLocate libRtMidi.a : lib ;
 
-LinkLibraries liveMusicMachine : libRtMidi ;
+LinkLibraries liveMusicMachine : libRtMidi libBase20 ;
 
 Main liveMusicMachine : src/Main.cpp
-                        src/Midi.cpp ;
+                        src/Midi.cpp
+                        src/SongState.cpp
+                        src/Visualizers/ColorBlocks.cpp ;
 
 MakeLocate liveMusicMachine : bin ;
 
-#LinkLibraries liveMusicMachine : libBase20 ;
-#
 #if $(WINDOWS)
 #{
 #        MakeLocate liveMusicMachine.exe : windowsBin ;
@@ -29,5 +28,5 @@ MakeLocate liveMusicMachine : bin ;
 #{
 #        MakeLocate liveMusicMachine : bin ;
 #}
-#
-#SubInclude . libs ;
+
+SubInclude . ThirdParty ;

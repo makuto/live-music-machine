@@ -77,7 +77,7 @@ else
 OPTIM = -O0 ;
 
 #HDRS = libs/base2.0 ;
-HDRS = ThirdParty/rtmidi ;
+HDRS = ThirdParty/rtmidi ThirdParty/base2.0 src ;
 
 
 # Some helpful Jam commands
