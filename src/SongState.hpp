@@ -15,6 +15,8 @@ struct SongTrack
 	NoteVelocityMap notesPlaying;
 };
 
+#define MAX_TRACKS 16
+
 class SongState
 {
 	RtMidiIn MidiIn;
@@ -23,7 +25,7 @@ class SongState
 	void SetNoteOff(MidiNote* noteMessage);
 
 public:
-	SongTrack Tracks[16];
+	SongTrack Tracks[MAX_TRACKS];
 	SongTrack& GetTrack(Channel channel);
 
 	SongState();
