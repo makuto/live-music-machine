@@ -35,17 +35,18 @@ LINK = clang++ ;
 #   -Wno-unused-parameter = I should probably get rid of this at some point
 
 # Arguments used on all projects, regardless of any variables
-C++FLAGS = -std=c++11 -Wall -Wextra -Wno-unused-parameter ;
+# Define ALSA for RtMidi (http://www.music.mcgill.ca/~gary/rtmidi/)
+C++FLAGS = -std=c++11 -Wall -Wextra -Wno-unused-parameter -D__LINUX_ALSA__ ;
 
 ALLLIBSC++FLAGS = -g ;
 # Required arguments for linux
 LINUXC++FLAGS = -g ;
 # Required arguments for Windows
-#WINDOWSC++FLAGS = -g -stdlib=libc++ -fPIC ;
-#WINDOWSC++FLAGS = -g -stdlib=libc++ -target x86_64-win32 ;
-#WINDOWSC++FLAGS = -g -stdlib=libc++ -target x86_64-w64-mingw32 ;
+#WINDOWSC++FLAGS = -g -stdlib=libc++ -fPIC -D__WINDOWS_MM__;
+#WINDOWSC++FLAGS = -g -stdlib=libc++ -target x86_64-win32 -D__WINDOWS_MM__;
+#WINDOWSC++FLAGS = -g -stdlib=libc++ -target x86_64-w64-mingw32 -D__WINDOWS_MM__;
 
-LINKLIBS = -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system ;
+LINKLIBS = -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system -lasound -lpthread ;
 
 KEEPOBJS = true ; # This doesn't actually fix anything, though it seems like it should
 NOARSCAN = true ; # This actually fixes the problem
@@ -75,8 +76,8 @@ else
 
 OPTIM = -O0 ;
 
-HDRS = libs/base2.0 ;
-
+#HDRS = libs/base2.0 ;
+HDRS = ThirdParty/rtmidi ;
 
 
 # Some helpful Jam commands

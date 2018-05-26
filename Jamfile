@@ -7,7 +7,15 @@ if $(WINDOWS)
         SUFEXE = .exe ;
 }
 
-Main liveMusicMachine : src/Main.cpp ;
+Library libRtMidi : #ThirdParty/rtmidi/midiprobe.cpp
+                    ThirdParty/rtmidi/RtMidi.cpp ;
+
+MakeLocate libRtMidi.a : lib ;
+
+LinkLibraries liveMusicMachine : libRtMidi ;
+
+Main liveMusicMachine : src/Main.cpp
+                        src/Midi.cpp ;
 
 MakeLocate liveMusicMachine : bin ;
 
