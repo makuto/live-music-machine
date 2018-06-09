@@ -1,4 +1,3 @@
-// Remove me and name file '.clang-format', put in top level source
 BasedOnStyle: Google
 AllowShortBlocksOnASingleLine: false
 AllowShortFunctionsOnASingleLine: None
